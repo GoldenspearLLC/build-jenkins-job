@@ -2,23 +2,23 @@
 name: 'Build Jenkins job'
 description: 'Trigger jenkins job'
 inputs:
-  jenkins-url:  # id of input
+  jenkins-url:
     description: 'jenkins server url'
     required: true
-  jenkins-token:  # id of input
+  jenkins-token:
     description: 'token to access jenkins server'
     required: true
   user:
     description: "user name"
     required: true
-  job-path:  # id of input
+  job-path:
     description: 'job/folder_name/job/job_name'
     required: true
   job-params:
     description: "params to run the job. JSON string. i.e '{'param1': 'value1', 'param2': 'value2'}' "
     required: false
 outputs:
-  job_status: # id of output
+  job_status:
     description: 'Build status'
 runs:
   using: 'docker'
