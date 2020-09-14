@@ -39,9 +39,6 @@ jobs:
       run: echo $(echo $GITHUB_REF)
     - name: print event name
       run: echo $(echo $GITHUB_EVENT_NAME)
-    - name: if statement
-      if: $GITHUB_EVENT_NAME == 'push'
-      run: echo $(echo $GITHUB_EVENT_NAME)
     - name: print event name
       run: echo github.event_name
     - name: if statement 2
