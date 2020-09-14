@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -31,5 +31,8 @@ jobs:
     - name: Extract branch name pr
       if: github.event_name == 'pull_request'
       run: echo ::set-env name=BRANCH::$(echo ${GITHUB_REF_HEAD})
+    - name: gitref
+      if: github.ref == 'refs/head/master'
+      run: echo  "${GITHUB_REF#refs/*/}"
 
 
