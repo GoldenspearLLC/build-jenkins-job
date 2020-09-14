@@ -20,14 +20,14 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: PRINT REF
-      run: echo github.ref
+      run: echo "${GITHUB_REF}"
     - name: print ref head
-      run: echo ${GITHUB_REF_HEAD}
+      run: echo "${GITHUB_REF_HEAD}"
     - name: Extract branch name push
       if: github.event_name == 'push'
       run: echo ::set-env name=BRANCH::${GITHUB_REF#refs/*/}
     - name: Extract branch name pr
-      if: github.ref == 'refs/heads/master'
+      if: github.event_name == 'pull_request'
       run: echo ::set-env name=BRANCH::$(echo ${GITHUB_REF_HEAD})
 
 
