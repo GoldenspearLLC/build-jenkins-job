@@ -19,35 +19,15 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Extract branch name
-      shell: bash
-      run: echo ::set-env name=BRANCH::$(echo ${GITHUB_HEAD_REF})
-      id: extract_branch
-    - name: Get branch name
-      run: echo 'Branch name is' ${{ env.BRANCH}}
-    - name: Set output
-      id: vars
-      run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
-    - name: Check output
-      run: echo ${{ steps.vars.outputs.short_ref }}
-    - name: Output the branch name
-      run: echo $(echo $GITHUB_REF | cut -d'/' -f 3)
-    - uses: nelonoel/branch-name@v1
-    # Use branch name for whatever purpose
-    - run: echo ${BRANCH_NAME}
-    - name: Output the branch name
-      run: echo $(echo $GITHUB_REF)
-    - name: print event name
-      run: echo $(echo $GITHUB_EVENT_NAME)
-    - name: print event name
-      run: echo github.event_name
-    - name: if statement 2
-      if: github.event_name == 'push'
-      run: echo $(echo $GITHUB_EVENT_NAME)
+    - name: PRINT REF
+      run: echo github.ref
+    - name: print ref head
+      run: echo ${GITHUB_REF_HEAD}
     - name: Extract branch name push
       if: github.event_name == 'push'
       run: echo ::set-env name=BRANCH::${GITHUB_REF#refs/*/}
     - name: Extract branch name pr
-      if: github.event_name == 'pull_request'
+      if: github.ref == 'refs/heads/master'
       run: echo ::set-env name=BRANCH::$(echo ${GITHUB_REF_HEAD})
+
 
