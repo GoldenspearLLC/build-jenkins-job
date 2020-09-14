@@ -44,5 +44,10 @@ jobs:
     - name: if statement 2
       if: github.event_name == 'push'
       run: echo $(echo $GITHUB_EVENT_NAME)
-
+    - name: Extract branch name push
+      if: github.event_name == 'push'
+      run: echo ::set-env name=BRANCH::${GITHUB_REF#refs/*/}
+    - name: Extract branch name pr
+      if: github.event_name == 'pull_request'
+      run: echo ::set-env name=BRANCH::$(echo ${GITHUB_REF_HEAD})
 
