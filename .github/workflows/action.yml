@@ -35,4 +35,7 @@ jobs:
     - uses: nelonoel/branch-name@v1
     # Use branch name for whatever purpose
     - run: echo ${BRANCH_NAME}
+    - name: Output the branch name
+      run: echo $(echo $GITHUB_REF)
+
 
