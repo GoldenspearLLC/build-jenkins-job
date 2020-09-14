@@ -22,7 +22,7 @@ jobs:
     - name: PRINT REF
       run: echo "${GITHUB_REF#refs/*/}"
     - name: print ref head
-      run: echo "${GITHUB_REF_HEAD}"
+      run: echo "${GITHUB_HEAD_REF}"
     - name: Extract branch name push
       if: github.event_name == 'push'
       run: echo ::set-env name=BRANCH::${GITHUB_REF#refs/*/}
@@ -30,11 +30,11 @@ jobs:
       run: echo "${{ env.BRANCH}}"
     - name: Extract branch name pr
       if: github.event_name == 'pull_request'
-      run: echo ::set-env name=BRANCH::$(echo ${GITHUB_REF_HEAD})
+      run: echo ::set-env name=BRANCH::$(echo ${GITHUB_HEAD_REF})
     - name: gitref
       if: github.ref == 'refs/head/master'
       run: echo  "${GITHUB_REF#refs/*/}"
     - name: git_ref_head
-      run: echo "${GITHUB_REF_HEAD}"
+      run: echo "${GITHUB_HEAD_REF}"
 
 
