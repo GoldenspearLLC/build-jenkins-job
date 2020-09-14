@@ -25,4 +25,14 @@ jobs:
       id: extract_branch
     - name: Get branch name
       run: echo 'Branch name is' ${{ env.BRANCH}}
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+    - name: Check output
+      run: echo ${{ steps.vars.outputs.short_ref }}
+    - name: Output the branch name
+      run: echo $(echo $GITHUB_REF | cut -d'/' -f 3)
+    - uses: nelonoel/branch-name@v1
+    # Use branch name for whatever purpose
+    - run: echo ${BRANCH_NAME}
 
