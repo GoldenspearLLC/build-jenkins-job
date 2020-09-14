@@ -34,5 +34,7 @@ jobs:
     - name: gitref
       if: github.ref == 'refs/head/master'
       run: echo  "${GITHUB_REF#refs/*/}"
+    - name: git_ref_head
+      run: echo "${GITHUB_REF_HEAD}"
 
 
