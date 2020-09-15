@@ -29,3 +29,6 @@ runs:
     - ${{ inputs.user}}
     - ${{ inputs.job-path }}
     - ${{ inputs.job-params}}
+branding:
+  icon: 'arrow-right-circle'
+  color: 'blue'
