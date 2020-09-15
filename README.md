@@ -53,7 +53,7 @@ E.g.
 ## Example usage
 ```
     - name: "Trigger jenkins job"
-      uses: GoldenspearLLC/build-jenkins-job@master # Uses an action in the root directory
+      uses: GoldenspearLLC/build-jenkins-job@master
       with:
         jenkins-url: ${{ secrets.JENKINS_URL }}
         jenkins-token: ${{ secrets.JENKINS_TOKEN }}
