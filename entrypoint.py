@@ -20,15 +20,13 @@ JENKINS_URL = mandatory_arg(sys.argv[1])
 JENKINS_TOKEN = mandatory_arg(sys.argv[2])
 JENKINS_USER = mandatory_arg(sys.argv[3])
 JOB_PATH = mandatory_arg(sys.argv[4])
-
 # not mandatory
 JOB_PARAMS = sys.argv[5] or '{}'
 
 # create/connect jenkins server
-server = jenkins.Jenkins(f"http://{JENKINS_URL}", username=JENKINS_USER, password=JENKINS_TOKEN)
+server = jenkins.Jenkins(f"https://{JENKINS_URL}", username=JENKINS_USER, password=JENKINS_TOKEN)
 user = server.get_whoami()
-version = server.get_version()
-print(f"Hello {user['fullName']} from Jenkins {version}")
+print(f"Triggering Jenkins with user {user['fullName']}")
 
 # build job
 split = JOB_PATH.split("job/")
@@ -38,7 +36,7 @@ queue_info = server.get_queue_info()
 queue_id = queue_info[0].get('id')
 
 # define url to request build_number
-url = f"http://{JENKINS_USER}:{JENKINS_TOKEN}@{JENKINS_URL}/queue/item/{queue_id}/api/json?pretty=true"
+url = f"https://{JENKINS_USER}:{JENKINS_TOKEN}@{JENKINS_URL}/queue/item/{queue_id}/api/json?pretty=true"
 
 
 def get_trigger_info(url: str):
