@@ -53,13 +53,13 @@ E.g.
 
 ```
     - name: "Trigger jenkins job"
-      uses: ccouzens/build-jenkins-job@master
+      uses: loveholidays/build-jenkins-job@master
       with:
         jenkins-url: ${{ secrets.JENKINS_URL }}
         jenkins-token: ${{ secrets.JENKINS_TOKEN }}
         user: "jenkins-username"
         job-path: "job/folder_name/job/job_name"
-        job-params: "{'param1': 'value1', 'param2': 'value2'}"
+        job-params: '{"param1": "value1", "param2": "value2"}'
     - name: Get job status
       run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
 ```
