@@ -41,13 +41,39 @@ E.g.
  {"param1": "value1", "param2": "value2"}
 ```
 
+### `poll-interval`
+
+The time interval between polls of the build status. Time in seconds. Defaults
+to 10 seconds.
+
+E.g.
+
+```
+10
+```
+
+### `timeout`
+
+If the build does not complete within the `timeout` time, this github action
+will be marked as failed. Time in seconds. Defaults to 180 (3 minutes).
+
+E.g.
+
+```
+180
+```
+
 ## Outputs
 
-### `status/result`
+### `job_status`
 
 - FAILURE
 - SUCCESS
 - ABORTED
+
+### `build_url`
+
+URL to view the build in Jenkins.
 
 ## Example usage
 
