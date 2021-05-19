@@ -1,0 +1,21 @@
+{
+  "name": "build-jenkins-job",
+  "description": "This action builds/triggers a jenkins job, waiting it to be finished and enabling to pass job params.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccouzens/build-jenkins-job.git"
+  },
+  "homepage": "https://github.com/ccouzens/build-jenkins-job#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.7",
+    "@actions/github": "^5.0.0",
+    "jenkins": "^0.28.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.3.0"
+  },
+  "scripts": {
+    "format": "prettier --write --prose-wrap=always ."
+  }
+}
