@@ -9,7 +9,6 @@
   "homepage": "https://github.com/ccouzens/build-jenkins-job#readme",
   "dependencies": {
     "@actions/core": "^1.2.7",
-    "@actions/github": "^5.0.0",
     "jenkins": "^0.28.1"
   },
   "devDependencies": {
