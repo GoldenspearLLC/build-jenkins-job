@@ -1,5 +1,4 @@
 const core = require("@actions/core");
-const github = require("@actions/github");
 const jenkins = require("jenkins");
 
 const POLL_INTERVAL = 10_000;
