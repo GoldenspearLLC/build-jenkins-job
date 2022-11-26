@@ -7,7 +7,7 @@ import requests
 import jenkins
 import time
 import json
-
+import re
 
 def mandatory_arg(argv):
     if argv == "":
@@ -25,7 +25,13 @@ JOB_PATH = mandatory_arg(sys.argv[4])
 JOB_PARAMS = sys.argv[5] or '{}'
 
 # create/connect jenkins server
-server = jenkins.Jenkins(f"http://{JENKINS_URL}", username=JENKINS_USER, password=JENKINS_TOKEN)
+# if url begins with https
+if re.search("^https://", JENKINS_URL):
+    protocol = "https"
+# else assume http -> when http protocol is specified or no protocol specified in URL
+else:
+    protocol = "http"
+server = jenkins.Jenkins(f"{protocol}://{JENKINS_URL}", username=JENKINS_USER, password=JENKINS_TOKEN)
 user = server.get_whoami()
 version = server.get_version()
 print(f"Hello {user['fullName']} from Jenkins {version}")
@@ -38,7 +44,7 @@ queue_info = server.get_queue_info()
 queue_id = queue_info[0].get('id')
 
 # define url to request build_number
-url = f"http://{JENKINS_USER}:{JENKINS_TOKEN}@{JENKINS_URL}/queue/item/{queue_id}/api/json?pretty=true"
+url = f"{protocol}://{JENKINS_USER}:{JENKINS_TOKEN}@{JENKINS_URL}/queue/item/{queue_id}/api/json?pretty=true"
 
 
 def get_trigger_info(url: str):
